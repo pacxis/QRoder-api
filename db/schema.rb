@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2022_11_26_191550) do
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "catagory"
+    t.integer "category"
   end
 
   create_table "sessions", force: :cascade do |t|

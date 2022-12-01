@@ -1,6 +1,6 @@
-class MakeCatagoriesOfProducts < ActiveRecord::Migration[6.1]
+class MakeCategoriesOfProducts < ActiveRecord::Migration[6.1]
   def change
-    remove_column :products, :catagory
-    add_column :products, :catagory, :integer
+    remove_column :products, :category
+    add_column :products, :category, :integer
   end
 end

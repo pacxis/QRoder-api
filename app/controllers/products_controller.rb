@@ -2,10 +2,10 @@ class ProductsController < ApplicationController
     # before_action :employee_only,except: %i[destroy edit]
 
     def index 
-        @deserts = Product.where(catagory: "deserts").with_attached_image
-        @starters = Product.where(catagory: "starters").with_attached_image
-        @mains = Product.where(catagory: "main").with_attached_image
-        @drinks = Product.where(catagory: "drinks").with_attached_image
+        @deserts = Product.where(category: "deserts").with_attached_image
+        @starters = Product.where(category: "starters").with_attached_image
+        @mains = Product.where(category: "main").with_attached_image
+        @drinks = Product.where(category: "drinks").with_attached_image
 
         @drinks = @drinks.map { |drink|
             drink.as_json.merge({ image: drink.image.attached? ? url_for(drink.image) : ""})
@@ -31,10 +31,10 @@ class ProductsController < ApplicationController
     def destroy
         @product = Product.find_by(id: params[:id])
         @product.destroy
-        @deserts = Product.where(catagory: "deserts").with_attached_image
-        @starters = Product.where(catagory: "starters").with_attached_image
-        @mains = Product.where(catagory: "main").with_attached_image
-        @drinks = Product.where(catagory: "drinks").with_attached_image
+        @deserts = Product.where(category: "deserts").with_attached_image
+        @starters = Product.where(category: "starters").with_attached_image
+        @mains = Product.where(category: "main").with_attached_image
+        @drinks = Product.where(category: "drinks").with_attached_image
 
         @drinks = @drinks.map { |drink|
             drink.as_json.merge({ image: drink.image.attached? ? url_for(drink.image) : ""})
@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
 
     def update
         @product = Product.find_by(id: params[:id])
-        @product.update(name: params[:name], description: params[:description], price: params[:price], catagory: params[:catagory])
+        @product.update(name: params[:name], description: params[:description], price: params[:price], category: params[:category])
         @product.image = params[:image] if params[:image]
         @product.save
         render :json => @product
@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.new
-        @product.update(name: params[:name], description: params[:description], price: params[:price],image: params[:image],catagory: params[:catagory])
+        @product.update(name: params[:name], description: params[:description], price: params[:price],image: params[:image],category: params[:category])
         # redirect_to root_path(), :notice => "Product Created."
         render :json => @product
     end
